@@ -3,12 +3,25 @@
 {% block title_block %} {{title}} {% endblock title_block %}
 
 {% block body_block %}
+<div class="col-md-6 offset-md-3">
+    <h3 class='text-dark my-2 text-center'>Sign Up Here</h3><hr>
     <form method="POST" novalidate>
-        {{form|crispy}}
         {% csrf_token %}
-        <br>
-        <button class="btn btn-success btn-sm">Sign Up</button>
+				<!-- Error Message  -->
+		{% if form.non_field_errors %}
+			{% for error in form.non_field_errors %}
+				<p class='alert alert-danger my-2'>{{error}}</p>
+			{% endfor %}
+		{% endif %}
+		<!-- Error Message End  -->
+		{% for fm in form %}
+        <div class='form-group'>
+			{{fm.label_tag}} {{fm}} <p class='text-danger'>{{fm.errors|striptags}}</p>
+        </div>
+		{% endfor %}
+        <input class='btn btn-block btn-success btn-lg' type="submit" style="width:100%" value="Submit">
     </form>
+</div>
 {% endblock body_block %}
 
 
