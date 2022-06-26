@@ -6,6 +6,7 @@
         .sign_up{
             border: 1px solid #ccc;
             padding: 15px;
+            shadow:red;
         }
         .log_in{
             padding: 20px;
@@ -13,9 +14,10 @@
         }
     </style>
 {% endblock css_block %}
+
 {% block body_block %}
 <div class="col-md-6 offset-md-3 sign_up mt-3">
-    <h3 class='text-dark my-2 text-center'>Sign Up Here</h3><hr>
+    <h3 class='text-dark my-2 text-center'>Login Here</h3><hr>
     <form method="POST" novalidate>
         {% csrf_token %}
 				<!-- Error Message  -->
@@ -30,12 +32,12 @@
 			{{fm.label_tag}} {{fm}}{{crispy}} <p class='text-danger'>{{fm.errors|striptags}}</p>
         </div>
 		{% endfor %}
-        <input class='btn btn-block btn-success btn-lg' type="submit" style="width:100%" value="Submit">
+        <input class='btn btn-block btn-primary btn-lg' type="submit" style="width:100%" value="Login">
     </form>
 </div>
 <div class="col-md-6 offset-md-3 log_in mt-2 text-center">
-    <p>Have an accont? <a href="{% url 'App_Login:login' %}">Login</a></p>
+    <p>Don't have an accont? <a href="{% url 'App_Login:sign_up' %}">Sign Up</a></p>
 </div>
+
+
 {% endblock body_block %}
-
-
