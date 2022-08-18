@@ -26,10 +26,11 @@ class LoginForm(AuthenticationForm):
     password = forms.CharField(label=_('Password'),strip=False,widget=forms.PasswordInput(attrs={'autocomplete':'current-password', 'class':'form-control'}))
 
 
+
 class EditProfile(forms.ModelForm):
-    dob = forms.DateField(widget=forms.TextInput(attrs={'type':'date'}))
+    dob = forms.DateField(widget=forms.TextInput(attrs={'type':'date',}))
     class Meta:
-        model = UserProfile
+        model = UserProfile()
         exclude = ('user',)
 
 

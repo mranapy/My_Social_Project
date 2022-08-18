@@ -8,12 +8,12 @@
             padding: 15px;
         }
         .log_in{
-            padding: 20px;
+            padding: 10px;
             border: 1px solid #ccc;
         }
     </style>
 {% endblock css_block %}
-{% block body_block %}
+{% block body_block %} <br>
 <div class="col-md-6 offset-md-3 sign_up mt-3">
     <h3 class='text-dark my-2 text-center'>Sign Up Here</h3><hr>
     <form method="POST" novalidate>
@@ -34,8 +34,8 @@
     </form>
 </div>
 <div class="col-md-6 offset-md-3 log_in mt-2 text-center">
-    <p>Have an accont? <a href="{% url 'App_Login:login' %}">Login</a></p>
-</div>
+    Already you have an account? <a href="{% url 'App_Login:login' %}"> <b>Login</b> </a>
+</div><br>
 {% endblock body_block %}
 
 
