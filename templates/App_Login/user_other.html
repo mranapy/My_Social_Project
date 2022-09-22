@@ -12,9 +12,6 @@
     height: 300px;
     margin: -75px 0 0 -100px;
   }
-  #usepostbody{
-    background-color:red;
-  }
 </style>
 {% endblock css_block %}
 
@@ -29,10 +26,10 @@
             {% endif %}
     </div>
     <div class="col-sm-8">
-        <h3>@{{user.username}}</h3>
+      <h4>{{user.user_profile.full_name}}</h4>
+        <h5>@{{user.username}}</h5>
         <h4>{{user.post.count}} posts &nbsp; &nbsp; {{user.following.count}} followers &nbsp; &nbsp; {{user.follower.count}} following</h4>
         <br>
-        <h4>{{user.user_profile.full_name}}</h4>
         <h6>{{user.user_profile.description|linebreaks}}</h6>
     </div>
 </div>
@@ -42,7 +39,7 @@
     {% for post in user.post.all %}
     <div class="crop">
           <span>{{post.caption}}</span>
-          <img src="/media/{{post.image}}" alt="">
+          <img src="/media/{{post.image}}" alt="" height="200" width="250">
         </div>
       {% endfor %}
   </div>
