@@ -4,9 +4,10 @@
 
 {% block body_block %}
 
-<h2>Hello home Page</h2>
 
-
+<div class="row offset-3">
+    <div class="col-8">
+        <h2 class="text-center" style="color:#e91e63;font-family: cursive;">Welcome to home page</h2><hr>
 {% if search %}
 {% for user in result %}
 <div class="row">
@@ -17,24 +18,22 @@
         <a class="nav-link" href="{% url 'App_Login:profile' %}"><img src="/media/default.png" width="75px" height="75px" class='rounded-circle'></a>
         {% endif %}
     </div>
-    <div class="col-10"> <br>
-        {% if user.user_profile.full_name %}
-        {{user.user_profile.full_name}}<br>
-        <a href="{% url 'App_Login:user' username=user.username%}">{{user.username}}</a>
-        {% else %}
-        <a href="{% url 'App_Login:user' username=user.username%}">{{user.username}}</a>
-        {% endif %}
-    </div>
 </div><br>
     
 {% endfor %}
 <br>
 {% else %}
 {% for post in posts %}
-    <p>{{post.caption}}</p>
-        <img src="/media/{{post.image}}" alt="" width='400' height='300'>
+    <div class="" style="border:2px solid #c4e1c5;">
+        {% comment %} {{post.user_profile.full_name}} {% endcomment %}
+        <p style="font-family: monospace;" class="mx-2">{{post.caption}}</p>
+        <img class="img-fluid img-responsive" width='520' height='300px' src="/media/{{post.image}}" alt="{{post.caption}}">
+        {% comment %} <img src="/media/{{post.image}}" alt="{{post.caption}}" width='520' height='300'> {% endcomment %}
+    </div> <br><br>
     {% endfor %}
-{% endif %}<br><br><br>
+{% endif %}
+    </div>
+</div>
 
 
 {% endblock body_block %}

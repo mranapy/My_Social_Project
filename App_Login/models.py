@@ -10,6 +10,12 @@ class UserProfile(models.Model):
     dob = models.DateField(blank=True, null=True)
     website = models.URLField(blank=True)
     facebook = models.URLField(blank=True)
+
+    class Meta:
+        ordering = ['-user']
+    
+    def __str__(self):
+        return str(self.full_name) + ' | ' + str(self.user)
     
 
 class Follow(models.Model):
