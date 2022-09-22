@@ -13,13 +13,13 @@
     <div class="col-2">
         {% if user.user_profile.profile_pic %}
             <a class="nav-link" href="{% url 'App_Login:profile' %}"><img src="/media/{{user.user_profile.profile_pic}}" height="75px" width="75px" class='rounded-circle'></a>
-            {% else %}
-            <img src="/media/default.png" width="75px" height="75px" class='rounded-circle'></a>
-            {% endif %}
+        {% else %}
+        <a class="nav-link" href="{% url 'App_Login:profile' %}"><img src="/media/default.png" width="75px" height="75px" class='rounded-circle'></a>
+        {% endif %}
     </div>
     <div class="col-10"> <br>
         {% if user.user_profile.full_name %}
-        {{user.user_profile.full_name}} <br>
+        {{user.user_profile.full_name}}<br>
         <a href="{% url 'App_Login:user' username=user.username%}">{{user.username}}</a>
         {% else %}
         <a href="{% url 'App_Login:user' username=user.username%}">{{user.username}}</a>
@@ -30,11 +30,11 @@
 {% endfor %}
 <br>
 {% else %}
-{% for post in user.post.all %}
+{% for post in posts %}
     <p>{{post.caption}}</p>
-        <img src="/media/{{post.image}}" alt="">
+        <img src="/media/{{post.image}}" alt="" width='400' height='300'>
     {% endfor %}
-{% endif %}
+{% endif %}<br><br><br>
 
 
 {% endblock body_block %}
