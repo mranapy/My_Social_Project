@@ -12,13 +12,11 @@ def home(request):
         search = request.GET.get('search', '')
         result = User.objects.filter(username__icontains=search)
         posts = Post.objects.all()
-        users = UserProfile.objects.all()
         context={
             'title':'Home',
             'search':search,
             'result':result,
-            'posts':posts,
-            'users':users
+            'posts':posts
             }
     return render(request,'App_Posts/home.html', context)
 

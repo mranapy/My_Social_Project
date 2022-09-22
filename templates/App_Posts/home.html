@@ -5,31 +5,41 @@
 {% block body_block %}
 
 
-<div class="row offset-3">
-    <div class="col-8">
-        <h2 class="text-center" style="color:#e91e63;font-family: cursive;">Welcome to home page</h2><hr>
+
 {% if search %}
 {% for user in result %}
 <div class="row">
     <div class="col-2">
         {% if user.user_profile.profile_pic %}
-            <a class="nav-link" href="{% url 'App_Login:profile' %}"><img src="/media/{{user.user_profile.profile_pic}}" height="75px" width="75px" class='rounded-circle'></a>
+            <a class="nav-link" href=""><img src="/media/{{user.user_profile.profile_pic}}" height="75px" width="75px" class='rounded-circle'></a>
         {% else %}
-        <a class="nav-link" href="{% url 'App_Login:profile' %}"><img src="/media/default.png" width="75px" height="75px" class='rounded-circle'></a>
+        <a class="nav-link" href=""><img src="/media/default.png" width="75px" height="75px" class='rounded-circle'></a>
+        {% endif %}
+    </div>
+    <div class="col-10"> <br>
+        {% if user.user_profile.full_name %}
+        {{user.user_profile.full_name}}<br>
+        <a href="{% url 'App_Login:user' username=user.username%}">{{user.username}}</a>
+        {% else %}
+        <a href="{% url 'App_Login:user' username=user.username%}">{{user.username}}</a>
         {% endif %}
     </div>
 </div><br>
     
 {% endfor %}
 <br>
+
 {% else %}
+<div class="row offset-3">
+    {% comment %} <div class="col-8" style="border:2px solid #c4e1c5;"> {% endcomment %}
+    <div class="col-8" style="background-color: #f8f9fa;">
+<h2 class="text-center" style="color:#e91e63;font-family: cursive;">Welcome to home page</h2><hr>
 {% for post in posts %}
-    <div class="" style="border:2px solid #c4e1c5;">
-        {% comment %} {{post.user_profile.full_name}} {% endcomment %}
-        <p style="font-family: monospace;" class="mx-2">{{post.caption}}</p>
-        <img class="img-fluid img-responsive" width='520' height='300px' src="/media/{{post.image}}" alt="{{post.caption}}">
+    <div class="" >
+        <p style="font-family:monospace" class="mx-2">{{post.caption}}</p>
+        <img  class="img-fluid img-responsive center-block d-block mx-auto" width='520' src="/media/{{post.image}}" alt="{{post.caption}}">
         {% comment %} <img src="/media/{{post.image}}" alt="{{post.caption}}" width='520' height='300'> {% endcomment %}
-    </div> <br><br>
+    </div> <br><hr><br> 
     {% endfor %}
 {% endif %}
     </div>

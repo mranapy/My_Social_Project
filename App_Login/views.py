@@ -74,7 +74,7 @@ def profile(request):
 def user(request, username):
     user = User.objects.get(username=username)
     if user == request.user:
-        return HttpResponseRedirect(reverse('App_login/profile.html'))
+        return HttpResponseRedirect(reverse('App_Login:profile'))
     context = {
         'user':user
     }
