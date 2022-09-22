@@ -10,6 +10,8 @@ class Post(models.Model):
 
     class Meta:
         ordering = ['-upload_date']
+    def __str__(self):
+        return self.caption
 
 class Like(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='like_post')
