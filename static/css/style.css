@@ -11,3 +11,6 @@ body{
 .jumbo-color{
     background-color: rgb(83, 81, 81);
 }
+#usepostbody{
+    background-color: orange !important;
+}
