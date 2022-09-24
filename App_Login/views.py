@@ -72,11 +72,11 @@ def profile(request):
 
 @login_required
 def user(request, username):
-    user = User.objects.get(username=username)
-    if user == request.user:
+    user_other = User.objects.get(username=username)
+    if user_other == request.user:
         return HttpResponseRedirect(reverse('App_Login:profile'))
     context = {
-        'user':user
+        'user_other':user_other
     }
     return render(request, 'App_Login/user_other.html', context)
 

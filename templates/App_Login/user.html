@@ -10,7 +10,7 @@
   .crop.img{
     width: 400px;
     height: 300px;
-    margin: -75px 0 0 -100px;
+    {% comment %} margin: -75px 0 0 -100px; {% endcomment %}
   }
   #usepostbody{
     background-color:red;
@@ -29,15 +29,15 @@
             {% endif %}
     </div>
     <div class="col-sm-8">
-      <h4>{{user.user_profile.full_name}}</h4>
-        <i>@{{user.username}}</i> <a href="{% url 'App_Login:edit' %}" class="btn btn-light">Edit Profile</a>
-        <h4>{{user.post.count}} posts &nbsp; &nbsp; {{user.following.count}} followers &nbsp; &nbsp; {{user.follower.count}} following</h4>
+      <h4 style='font-family:monospace'>{{user.user_profile.full_name}}</h4>
+        <span style='font-family:cursive'>@{{user.username}}</span> <a style='font-family:monospace' href="{% url 'App_Login:edit' %}" class="btn btn-warning">Edit Profile</a>
+        <h4 style='font-family:monospace'>{{user.post.count}} posts &nbsp; &nbsp; {{user.following.count}} followers &nbsp; &nbsp; {{user.follower.count}} following</h4>
         <br>
-        <h6>{{user.user_profile.description|linebreaks}}</h6>
+        <h6 style='font-family:monospace'>{{user.user_profile.description|linebreaks}}</h6>
     </div>
 </div>
 <hr>
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+<button style='font-family:monospace' type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
     New Post
   </button>
 
@@ -48,8 +48,8 @@
   
         <!-- Modal Header -->
         <div class="modal-header">
-          <h4 class="modal-title">Post a photo</h4>
-          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          <h4 style='font-family:monospace' class="modal-title">Post a photo</h4>
+          <button style='font-family:monospace' type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
   
         <!-- Modal body -->
@@ -57,13 +57,13 @@
           <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
           {{form.as_p}}
-          <button type="submit">Post</button>
+          <button style='font-family:monospace' type="submit">Post</button>
         </form>
         </div>
   
         <!-- Modal footer -->
         <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+          <button style='font-family:monospace' type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
