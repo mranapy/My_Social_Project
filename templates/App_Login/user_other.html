@@ -1,5 +1,5 @@
 {% extends 'App_Login/navbar.html' %}
-{% block title_block %} {{user.user_profile.full_name}} @{{user.username}} {% endblock title_block %}
+{% block title_block %} {{user_other.user_profile.full_name}} @{{user_other.username}} {% endblock title_block %}
 {% block css_block %}
 <style>
   .crop{
@@ -19,24 +19,24 @@
 
 <div class="row">
     <div class="col-sm-4">
-        {% if user.user_profile.profile_pic %}
-            <img src="/media/{{user.user_profile.profile_pic}}" height="250px" width="250px" class='rounded-circle'>
+        {% if user_other.user_profile.profile_pic %}
+            <img src="/media/{{user_other.user_profile.profile_pic}}" height="250px" width="250px" class='rounded-circle'>
             {% else %}
             <img src="/media/default.png" width="250px" height="250px" class='rounded-circle'>
             {% endif %}
     </div>
     <div class="col-sm-8">
-      <h4>{{user.user_profile.full_name}}</h4>
-        <h5>@{{user.username}}</h5>
-        <h4>{{user.post.count}} posts &nbsp; &nbsp; {{user.following.count}} followers &nbsp; &nbsp; {{user.follower.count}} following</h4>
+      <h4>{{user_other.user_profile.full_name}}</h4>
+        <h5>@{{user_other.username}}</h5>
+        <h4>{{user_other.post.count}} posts &nbsp; &nbsp; {{user_other.following.count}} followers &nbsp; &nbsp; {{user_other.follower.count}} following</h4>
         <br>
-        <h6>{{user.user_profile.description|linebreaks}}</h6>
+        <h6>{{user_other.user_profile.description|linebreaks}}</h6>
     </div>
 </div>
 <hr>
 
   <div class="row" >
-    {% for post in user.post.all %}
+    {% for post in user_other.post.all %}
     <div class="crop">
           <span>{{post.caption}}</span>
           <img src="/media/{{post.image}}" alt="" height="200" width="250">
