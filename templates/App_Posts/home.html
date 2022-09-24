@@ -34,13 +34,20 @@
     {% comment %} <div class="col-8" style="border:2px solid #c4e1c5;"> {% endcomment %}
     <div class="col-8" style="background-color: #f8f9fa;">
 <h2 class="text-center" style="color:#e91e63;font-family: cursive;">Welcome to home page</h2><hr>
+
 {% for post in posts %}
-    <div class="" >
-        <p style="font-family:monospace" class="mx-2">{{post.caption}}</p>
-        <img  class="img-fluid img-responsive center-block d-block mx-auto" width='520' src="/media/{{post.image}}" alt="{{post.caption}}">
-        {% comment %} <img src="/media/{{post.image}}" alt="{{post.caption}}" width='520' height='300'> {% endcomment %}
-    </div> <br><hr><br> 
-    {% endfor %}
+<div class="" >
+    <h3>{% if post.author.user_profile.profile_pic %}
+        <img src="/media/{{user.user_profile.profile_pic}}" height="30px" width="30px" class='rounded-circle'>
+    {% else %}
+    <img src="/media/default.png" width="30px" height="30px" class='rounded-circle'>
+    {% endif %}
+    {{post.author}}</h3>
+    <p style="font-family:monospace" class="mx-2">{{post.caption}}</p>
+    <img  class="img-fluid img-responsive center-block d-block mx-auto" width='520' src="/media/{{post.image}}" alt="{{post.caption}}">
+    {% comment %} <img src="/media/{{post.image}}" alt="{{post.caption}}" width='520' height='300'> {% endcomment %}
+</div><hr>
+{% endfor %}
 {% endif %}
     </div>
 </div>
