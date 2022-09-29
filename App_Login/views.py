@@ -8,8 +8,8 @@ from App_Login.models import UserProfile,Follow
 from django.contrib.auth.decorators import login_required
 from App_Posts.forms import PostForm
 
-# Create your views here.
 
+######### Registration #########
 def signup(request):
     form = CreateNewUser()
     registered = False
@@ -24,6 +24,7 @@ def signup(request):
     return render(request, 'App_login/signup.html',context={'title':'Sign Up Instragram','form':form})
 
 
+######### Login #########
 def login_page(request):
     form = LoginForm()
     if request.method == 'POST':
@@ -39,7 +40,7 @@ def login_page(request):
     return render(request, 'App_Login/login.html', context={'title':'Login','form':form})
 
 
-
+######### Edit Profile #########
 @login_required
 def edit_profile(request):
     current_user = UserProfile.objects.get(user=request.user)
@@ -52,12 +53,13 @@ def edit_profile(request):
             return HttpResponseRedirect(reverse('App_Login:profile'))
     return render(request, 'App_Login/profile.html', context={'form':form, 'title':'Edit Profile . Social'})
 
+######### Logout #########
 @login_required
 def logout_user(request):
     logout(request)
     return HttpResponseRedirect(reverse('App_Login:login'))
 
-
+######### Profile #########
 @login_required
 def profile(request):
     form = PostForm()
@@ -70,6 +72,7 @@ def profile(request):
             return HttpResponseRedirect(reverse('App_Login:profile'))
     return render(request, 'App_Login/user.html', context={'title':'User','form':form})
 
+######### Other User Profile #########
 @login_required
 def user(request, username):
     user_other = User.objects.get(username=username)
@@ -82,7 +85,7 @@ def user(request, username):
     }
     return render(request, 'App_Login/user_other.html', context)
 
-
+######### Follow User #########
 @login_required
 def follow(request, username):
     following_user = User.objects.get(username=username)
@@ -93,6 +96,7 @@ def follow(request, username):
         followed_user.save()
     return HttpResponseRedirect(reverse('App_Login:user', kwargs={'username':username}))
 
+######### Unfollow User #########
 @login_required
 def unfollow(request, username):
     following_user = User.objects.get(username=username)
